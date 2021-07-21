@@ -15,7 +15,20 @@ pipeline {
         stage('Verify Branch') { 
 
             steps { 
+                sh 'echo hello-shell'
                 echo "$GIT_BRANCH"
+            }
+            
+        }
+
+        stage('Docker Container') { 
+
+            steps { 
+                sh(script: """
+                pwd
+                ls -lt
+                """)
+                
             }
             
         }
