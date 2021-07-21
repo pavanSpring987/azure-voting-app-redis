@@ -25,8 +25,11 @@ pipeline {
 
             steps { 
                 sh(script: """
-                pwd
+                cd azure-vote/
                 ls -lt
+                docker images -a
+                docker image build -t jenkins-pipeline .
+                docker images -a
                 """)
                 
             }
