@@ -31,7 +31,8 @@ pipeline {
          steps {
             sh(script: """
                docker-compose up -d
-               ./scripts/test_container.sh
+               docker container ls
+               docker exec myjendoc22july ./scripts/test_container.sh
             """)
          }
          post {
