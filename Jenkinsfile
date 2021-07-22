@@ -29,13 +29,11 @@ pipeline {
 
         stage('Start test app') {
          steps {
-            sh(script: """
-               docker-compose up -d
-               cd ./scripts
-               ls -lt
-            """)
-            sh 'chmod +x ./scripts/test_container.sh'
-            sh './scripts/test_container.sh'
+            // sh(script: """
+            //    docker-compose up -d
+            // """)
+            sh 'docker-compose up -d && chmod +x ./scripts/test_container.sh && ./scripts/test_container.sh'
+            
          }
          post {
             success {
