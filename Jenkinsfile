@@ -34,6 +34,7 @@ pipeline {
                cd ./scripts
                ls -lt
             """)
+            sh 'chmod +x ./scripts/test_container.sh'
             sh './scripts/test_container.sh'
          }
          post {
