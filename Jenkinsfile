@@ -33,7 +33,8 @@ pipeline {
                docker-compose up -d
                cd ./scripts
                ls -lt
-               ./scripts/test_container.sh
+               chmod +x test_container.sh
+               test_container.sh
             """)
          }
          post {
