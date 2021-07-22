@@ -32,6 +32,8 @@ pipeline {
             sh(script: """
                docker-compose up -d
                docker container ls
+               ls -lt
+               ls ./scripts
                docker exec myjendoc22july ./scripts/test_container.sh
             """)
          }
