@@ -32,8 +32,6 @@ pipeline {
             sh(script: """
                docker-compose up -d
                docker container ls
-               pwd
-               docker exec myjendoc22july ${pwd}/scripts/test_container.sh
             """)
          }
          post {
@@ -43,6 +41,21 @@ pipeline {
             failure {
                echo "App failed to start :("
             }
+         }
+      }
+
+      stage('Run Tests') {
+         steps {
+            pwsh(script: """
+               pytest ./tests/test_sample.py
+            """)
+         }
+      }
+      stage('Stop test app') {
+         steps {
+            pwsh(script: """
+               docker-compose down
+            """)
          }
       }
     }
