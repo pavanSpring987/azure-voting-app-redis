@@ -31,7 +31,9 @@ pipeline {
          steps {
             sh(script: """
                docker-compose up -d
-               docker container ls
+               cd ./scripts
+               ls -lt
+               ./scripts/test_container.sh
             """)
          }
          post {
@@ -44,13 +46,7 @@ pipeline {
          }
       }
 
-      stage('Run Tests') {
-         steps {
-            sh(script: """
-               pytest ./tests/test_sample.py
-            """)
-         }
-      }
+      
       stage('Stop test app') {
          steps {
             pwsh(script: """
