@@ -33,7 +33,7 @@ pipeline {
                docker-compose up -d
                docker container ls
                pwd
-               docker exec myjendoc22july ./scripts/test_container.sh
+               docker exec myjendoc22july ${pwd}/scripts/test_container.sh
             """)
          }
          post {
