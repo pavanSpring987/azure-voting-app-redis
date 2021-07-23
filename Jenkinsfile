@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    environment {
+       SERVER_CREDENTIALS = credentials('server-credentials')
+    }
+
     stages { 
 
         stage('Verify Branch') { 
@@ -32,6 +36,7 @@ pipeline {
             // sh(script: """
             //    docker-compose up -d
             // """)
+            echo "${SERVER_CREDENTIALS}"
             sh 'docker-compose up -d && chmod +x ./scripts/test_container.sh && ./scripts/test_container.sh'
             
          }
