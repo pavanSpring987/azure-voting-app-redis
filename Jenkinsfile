@@ -2,9 +2,9 @@ pipeline {
 
     agent any
 
-    environment {
-       SERVER_CREDENTIALS = credentials('server-credentials')
-    }
+   //  environment {
+   //     SERVER_CREDENTIALS = credentials('server-credentials')
+   //  }
 
     stages { 
 
@@ -13,6 +13,11 @@ pipeline {
             steps { 
                 sh 'echo hello-shell'
                 echo "$GIT_BRANCH"
+                withCredentials([
+                   usernamePassword(credentials: 'server-credentials', usernameVariable:USER, passwordVariable: PWD )
+                ]) { 
+                   echo "${USER} ${PWD}"
+                }
             }
             
         }
@@ -50,16 +55,16 @@ pipeline {
          }
       }
 
-      stage('Run Tests') {
-         steps {
-            script { 
-               docker.image('python') {
-                  sh "python ./tests/test_sample.py"
-               }
-            }
+      // stage('Run Tests') {
+      //    steps {
+      //       script { 
+      //          docker.image('python') {
+      //             sh "python ./tests/test_sample.py"
+      //          }
+      //       }
             
-         }
-      }
+      //    }
+      // }
 
       
       
