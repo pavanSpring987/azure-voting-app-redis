@@ -41,7 +41,7 @@ pipeline {
             // sh(script: """
             //    docker-compose up -d
             // """)
-            echo "${SERVER_CREDENTIALS}"
+            
             sh 'docker-compose up -d && chmod +x ./scripts/test_container.sh && ./scripts/test_container.sh'
             
          }
@@ -55,16 +55,17 @@ pipeline {
          }
       }
 
-      // stage('Run Tests') {
-      //    steps {
-      //       script { 
-      //          docker.image('python') {
-      //             sh "python ./tests/test_sample.py"
-      //          }
-      //       }
+      stage('Run Tests') {
+         agent { docker { image 'python:3.5.1' } }
+         steps {
+            script { 
+              
+                  sh "python ./tests/test_sample.py"
+             
+            }
             
-      //    }
-      // }
+         }
+      }
 
       
       
