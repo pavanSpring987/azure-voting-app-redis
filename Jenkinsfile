@@ -46,13 +46,7 @@ pipeline {
       }
 
       
-      stage('Run Tests') {
-         steps {
-
-           // sh 'chmod +x ./tests/test_sample.py && pytest ./tests/test_sample.py'
-
-         }
-      }
+      
       stage('Stop test app') {
          steps {
             pwsh(script: """
