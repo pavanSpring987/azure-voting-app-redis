@@ -61,6 +61,7 @@ pipeline {
             script { 
               
                   sh "python ./tests/test_sample.py"
+                  sh "pytest ./tests/test_sample.py"
              
             }
             
