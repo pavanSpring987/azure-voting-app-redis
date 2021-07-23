@@ -47,7 +47,12 @@ pipeline {
 
       stage('Run Tests') {
          steps {
-            sh "pytest ./tests/test_sample.py"
+            script { 
+               docker.image('python') {
+                  sh "python ./tests/test_sample.py"
+               }
+            }
+            
          }
       }
 
