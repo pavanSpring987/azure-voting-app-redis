@@ -48,7 +48,7 @@ pipeline {
       stage('Run Tests') {
          steps {
             sh(script: """
-               pytest ./tests/test_sample.py
+               python ./tests/test_sample.py
             """)
          }
       }
