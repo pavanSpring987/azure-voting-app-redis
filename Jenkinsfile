@@ -14,9 +14,9 @@ pipeline {
                 sh 'echo hello-shell'
                 echo "$GIT_BRANCH"
                 withCredentials([
-                   usernamePassword(credentials: 'server-credentials', usernameVariable: userVar, passwordVariable: PWD )
+                   usernamePassword(credentialsId: 'server-credentials', usernameVariable: 'USER', passwordVariable: 'PWD' )
                 ]) { 
-                   echo "${userVar} ${PWD}"
+                   echo "${USER} ${PWD}"
                 }
             }
             
