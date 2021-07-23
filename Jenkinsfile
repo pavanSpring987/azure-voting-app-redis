@@ -46,15 +46,17 @@ pipeline {
       }
 
       stage('Run the tests') { 
-         agent {
-                docker {
-                    image 'gradle:6.7-jdk11'
-                    // Run the container on the node specified at the top-level of the Pipeline, in the same workspace, rather than on a new node entirely:
-                    reuseNode true
-                }
-            }
+         
             steps {
-                sh 'gradle --version'
+                  script {
+                     docker.image('mysql:5').withRun('-e "MYSQL_ROOT_PASSWORD=my-secret-pw"') { c ->
+                     docker.image('mysql:5').inside("--link ${c.id}:db") {
+                     /* Wait until mysql service is up */
+                     sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
+                     }
+                  }
+               }
+            
             }
       }
       
