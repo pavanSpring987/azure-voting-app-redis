@@ -66,7 +66,7 @@ pipeline {
               
                   
                   sh "pytest ./tests/test_sample.py"
-                  archiveArtifacts "./testResults26-july2021.txt'
+                  
              
             }
             
