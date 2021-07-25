@@ -56,11 +56,15 @@ pipeline {
       }
 
       stage('Run Tests') {
-         agent { docker { image 'python:3.5.1' } }
+          agent {
+                docker {
+                    image 'qnib/pytest'
+                }
+          }
          steps {
             script { 
               
-                  sh "python ./tests/test_sample.py"
+                  
                   sh "pytest ./tests/test_sample.py"
              
             }

@@ -1,0 +1,13 @@
+apt-get install python-pip && \
+   pip install -U pytest && \
+
+
+  apt-get install python-pip && pip install -U pytest
+
+  apt-get update && \
+    apt-get install python-pip && \
+    pip install -U pytest
+apt-get install software-properties-common && \
+apt-add-repository universe && \
+apt-get update && \
+apt-get install python-pip && \
