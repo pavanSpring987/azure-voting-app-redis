@@ -65,7 +65,8 @@ pipeline {
             script { 
               
                   
-                  sh "pytest ./tests/test_sample.py"
+                  sh "pytest ./tests/test_sample.py > ./testResults26-july2021.txt"
+                  archiveArtifacts "./testResults26-july2021.txt'
              
             }
             
